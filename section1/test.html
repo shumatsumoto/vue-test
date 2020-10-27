@@ -8,7 +8,10 @@
 </head>
 <body>
 	<div id="app">
-		<div v-show="isDisplay">表示</div>
+		<p>{{ totalPrice }}</p>
+		<p>{{ totalPriceMethods() }}</p>
+		<p>{{ totalPrice }}</p>
+		<p>{{ totalPriceMethods() }}</p>
 	</div>
 
 	<script>
@@ -16,9 +19,22 @@
 			el: '#app',
 			data() {
 				return {
-					isDisplay: true,
+					price: 100,
+					number: 1,
 				}
-			}
+			},
+			methods: {
+				totalPriceMethods() {
+					console.log('methodsです')
+					return this.number * this.price
+				}
+			},
+			computed: {
+				totalPrice() {
+					console.log('computedです')
+					return this.number * this.price
+				}
+			},
 		});
 	</script>
 </body>
