@@ -7,8 +7,11 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+	<a id="googleLink">googleLink</a>
+
 	<div id="app">
 		{{ message }}
+		<a :href="google">google</a>
 	</div>
 
 	<script>
@@ -16,7 +19,8 @@
 			el: '#app',
 			data() {
 				return {
-					message: 'Hello Vue!'
+					message: 'Hello Vue!',
+					google: 'https://www.google.com/?hl=ja',
 				}
 			}
 		});
@@ -24,6 +28,10 @@
 		const html = document.querySelector('html');
 		console.dir(html);
 		console.dir(app);
+
+		const googleLink = document.getElementById('googleLink');
+		googleLink.href = 'https://www.google.com/?hl=ja';
+
 	</script>
 </body>
 </html>
