@@ -21,6 +21,21 @@
 				return {
 					price: 100,
 					number: 1,
+					reactiveTest: {
+						name: 'TEST'
+					},
+					books: [
+						{
+							id: 1,
+							title: 'タイトル1',
+						},{
+							id: 2,
+							title: 'タイトル2',
+						},{
+							id: 3,
+							title: 'タイトル3',
+						},
+					]
 				}
 			},
 			methods: {
@@ -35,6 +50,14 @@
 				// }
 				totalPrice: app => app.number * app.price
 			},
+			watch: {
+				books: {
+					handler() {
+						console.log('変更されました')
+					},
+					deep: true
+				}
+			}
 		});
 
 		// console.log(this);
