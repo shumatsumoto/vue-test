@@ -10,8 +10,10 @@
 	<a id="googleLink">googleLink</a>
 
 	<div id="app">
-		{{ message }}
+		{{ book.title }}
+		{{ book.content }}
 		<a :href="google">google</a>
+		<input v-bind="formInput">
 	</div>
 
 	<script>
@@ -21,6 +23,14 @@
 				return {
 					message: 'Hello Vue!',
 					google: 'https://www.google.com/?hl=ja',
+					book: {
+						title: '本のタイトル',
+						content: '内容はXXXです',
+					},
+					formInput: {
+						name: 'your_name',
+						placeholder: 'お名前を入力してください',
+					}
 				}
 			}
 		});
