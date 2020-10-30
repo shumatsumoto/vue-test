@@ -8,10 +8,19 @@
 </head>
 <body>
 	<div id="app">
-		<input :value="test" @input="test = $event.target.value">
-		<p>{{ test }}</p>
-
-		<input @input='checkEvent'>
+		<form action="">
+			氏名 <input type="text" v-model="contact.yourName">
+			<br>
+			電話 <input type="tel" v-model="contact.tel">
+			<br>
+			メール <input type="email" v-model="contact.email">
+			<br>
+			性別
+			<input type="radio" value="male" v-model="contact.gender">
+			<input type="radio" value="female" v-model="contact.gender">
+			<input type="radio" value="other" v-model="contact.gender">
+			<input type="submit">送信
+		</form>
 	</div>
 
 	<script>
@@ -19,13 +28,20 @@
 			el: '#app',
 			data() {
 				return {
-					test: 'aaa'
+					contact: {
+						yourName: '',
+						tel: '',
+						email: '',
+						gender: '',
+						age: '',
+						message: '',
+						attracts: [],
+						caution: false
+					}
 				}		
 			},
 			methods: {
-				checkEvent(e) {
-					console.log(e)
-				}
+				
 			}
 		});
 	</script>
