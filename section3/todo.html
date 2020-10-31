@@ -20,9 +20,9 @@
 	<div id="app">
 		<input type="text" v-model='newItem'>
 		<button @click.prevent='addItem'>追加</button>
-		
+		<input v-model="query" type="text">
 		<ul v-cloak>
-			<li v-for="(todo, index) in todos">
+			<li v-for="(todo, index) in filterdList">
 				<input type="checkbox" v-model="todo.isDone">
 				<span :class="{done: todo.isDone}">{{ todo.item }}</span>
 				<button @click.prevent="deleteItem(index)">削除</button>
@@ -37,7 +37,8 @@
 			data() {	
 				return {
 					newItem: '',
-					todos: []
+					todos: [],
+					query: ''
 				}		
 			},
 			methods: {
@@ -52,6 +53,14 @@
 				},
 				deleteItem(index) {
 					this.todos.splice(index, 1)
+				}
+			},
+			computed: {
+				filterdList() {
+					let that = this
+					return this.todos.filter(todo => {
+						return todo.item.indexOf(that.query) !== -1
+					})
 				}
 			}
 		});
