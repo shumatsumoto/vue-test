@@ -9,24 +9,28 @@
 <body>
 	<div id="app">
 		<my-component></my-component>
+		<my-component></my-component>
+		<my-component></my-component>
 	</div>
 
 	<script>
-		Vue.component('my-component', {
+		let myComponent = {
 			template: `<div>
 				あああ
 				<div v-show="isShow">表示</div>
 			</div>`,
 			data() {
 				return {
-					isShow: false
+					isShow: true
 				}
 			}
-		})
+		}
 
 		let app = new Vue({
 			el: '#app',
-			
+			components: {
+				myComponent
+			}
 		});
 	</script>
 </body>
