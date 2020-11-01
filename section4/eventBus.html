@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<child-component></child-component>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		let eventBus = new Vue()
+		let grandChildComponent = {
+			template: `<div>孫のコンポーネントです<br><button @click="testEvent">ボタン</button></div>`,
+			methods: {
+				testEvent() {
+					eventBus.$emit('eventBus-test', '孫ーー')
+				}
+			}
+		}
+		let childComponent = {
+			template: `<div>子のコンポーネントです<br><grand-child-component></grand-child-component></div>`,
+			components: {
+				grandChildComponent
+			}
+		}
+
+		let app = new Vue({
+			el: '#app',
+			data() {
+				return {
+
+				}
+			},
+			components: {
+				childComponent
+			},
+			mounted() {
+				eventBus.$on('eventBus-test', test => {
+					console.log(test)
+				})
+			}
+		});
+	</script>
+</body>
+</html>
