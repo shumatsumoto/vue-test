@@ -4,19 +4,37 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
 	<div id="app">
-		
+		<array-test v-for="member in members" :key="member.name" :item="member"></array-test>
 	</div>
-
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script>
+		let arrayTest = {
+			props: {
+				item: {
+					type: Object
+				}
+			},
+			template: `<div>
+				<p>{{ item.name }}</p>
+			</div>`
+		}
+
 		let app = new Vue({
 			el: '#app',
+			components: {
+				arrayTest
+			},
 			data() {
 				return {
-					
+					members: [
+						{name: '久保'},
+						{name: '南野'},
+						{name: '田中'},
+					]
 				}
 			},
 		});
