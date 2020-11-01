@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<emit-test @custom-event="parentMethod"></emit-test>
+	</div>
+
+	
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		let emitTest = {
+			template: `<div>
+				<button @click="childMethod">子側のボタン</button>
+			</div>`,
+			methods: {
+				childMethod() {
+					this.$emit('custom-event', 'dfasdfa')
+				}
+			}
+		}
+		let app = new Vue({
+			el: '#app',
+			components: {
+				emitTest
+			},
+			data() {
+				return {
+
+				}
+			},
+			methods: {
+				parentMethod(e) {
+					console.log(e)
+				}
+			}
+		});
+	</script>
+</body>
+</html>
