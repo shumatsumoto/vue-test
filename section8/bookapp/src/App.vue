@@ -3,7 +3,9 @@
     <Header />
     <v-main>
       <v-container>
-        <router-view />
+        <router-view
+          @add-book-list="addBook"
+         />
       </v-container>
     </v-main>
     <Footer />
@@ -39,14 +41,16 @@ export default {
     }
   },
   methods: {
-    addBook() {
-      // 実際に何かしたことを入力する
-      if (!this.newBook) {
-        return;
-      }
-
-      this.books.push(this.newBook);
-      this.newBook = '';
+    addBook(e) {
+      this.books.push({
+        id: this.books.length,
+        title: e.title,
+        image: e.image,
+        description: e.description,
+        readDate: '',
+        memo: ''
+      });
+      // this.newBook = '';
       this.saveBooks();
     },
     removeBook(x) {
